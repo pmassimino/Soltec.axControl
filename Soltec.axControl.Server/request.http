@@ -1,0 +1,53 @@
+@baseUrl = http://localhost:5000
+
+### Crear una nueva transición de estado
+# Nota: Asegúrate de que los IDs de Circuito y Estados existan en tu base de datos
+POST {{baseUrl}}/api/login
+Content-Type: application/json
+
+{
+  "usuario": "john_doe",
+  "password": "secure_password"
+}
+
+### Obtener todas las transiciones de estado
+GET {{baseUrl}}/api/transicionesestado
+Accept: application/json
+
+### Obtener una transición específica por ID
+GET {{baseUrl}}/api/transicionesestado/1
+Accept: application/json
+
+### Crear una nueva transición de estado
+# Nota: Asegúrate de que los IDs de Circuito y Estados existan en tu base de datos
+POST {{baseUrl}}/api/transicionesestado
+Content-Type: application/json
+
+{
+  "circuitoId": 1,
+  "estadoOrigenId": 1,
+  "estadoDestinoId": 2
+}
+
+### Actualizar una transición existente
+PUT {{baseUrl}}/api/transicionesestado/1
+Content-Type: application/json
+
+{
+  "circuitoId": 1,
+  "estadoOrigenId": 1,
+  "estadoDestinoId": 3
+}
+
+### Eliminar una transición
+DELETE {{baseUrl}}/api/transicionesestado/1
+
+### Ejemplo de error al crear (Circuito no existe)
+POST {{baseUrl}}/api/transicionesestado
+Content-Type: application/json
+
+{
+  "circuitoId": 999,
+  "estadoOrigenId": 1,
+  "estadoDestinoId": 2
+}

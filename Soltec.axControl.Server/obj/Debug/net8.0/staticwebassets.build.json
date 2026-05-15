@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "CQ8t5PYStT5CqAQshzWCYB3n91Lvi52jyICiKMA/+iA=",
+  "Source": "Soltec.axControl.Server",
+  "BasePath": "_content/Soltec.axControl.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

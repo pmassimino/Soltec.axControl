@@ -1,0 +1,422 @@
+@url=http://localhost:5110
+@ApiKey = pgH7QzFHJx4w46fI~5Uzi4RvtTwlEXp
+
+### Estados - Login
+# @name Login
+POST {{url}}/api/login
+Content-Type: application/json
+
+{
+    "usuario": "admin",
+    "password": "admin"
+}
+
+### Guardar el token en una variable
+@authToken = {{Login.response.body.token}}
+
+###Habilita TAbs
+# @name HabilitarTag
+POST {{url}}/api/system/HabilitarTag
+Content-Type: application/json
+
+{
+    "idSector": 1,
+    "tagRFID": "RFID123456"
+}
+###Registra Pesada
+# @name RegistrarPesada
+POST {{url}}/api/system/RegistrarPesada
+Content-Type: application/json
+
+{
+    "idSector": 1,
+    "idTransaccion": 1,
+    "peso": "100.0"
+}
+### Zonas - Obtener todas
+# @name GetUsuarios
+GET {{url}}/api/usuario
+
+
+### Zonas - Obtener todas
+# @name GetZonas
+GET {{url}}/api/zonas
+Content-Type: application/json
+Authorization:Bearer {{authToken}}
+
+### Zonas - Obtener por ID
+# @name GetZona
+GET {{url}}/api/zonas/1
+
+### Zonas - Crear
+# @name CreateZona
+POST {{url}}/api/zonas
+Content-Type: application/json
+
+{
+    "nombre": "Ingreso",
+    "descripcion": "Zona de entrada de vehículos",
+    "orden": 1
+}
+
+### Zonas - Actualizar
+# @name UpdateZona
+PUT {{url}}/api/zonas/1
+Content-Type: application/json
+
+{
+    "nombre": "Entrada Principal",
+    "descripcion": "Zona de entrada principal de vehículos",
+    "orden": 1
+}
+
+### Zonas - Eliminar
+# @name DeleteZona
+DELETE {{url}}/api/zonas/0
+
+### Cereales - Obtener todos
+# @name GetCereales
+GET {{url}}/api/cereales
+
+### Cereales - Obtener por ID
+# @name GetCereal
+GET {{url}}/api/cereales/15
+
+### Cereales - Crear
+# @name CreateCereal
+POST {{url}}/api/cereales
+Content-Type: application/json
+
+{
+    "id": 15,
+    "nombre": "borrar"
+}
+### Cereales - Actualizar
+# @name UpdateCereal
+PUT {{url}}/api/cereales/15
+Content-Type: application/json
+
+{
+    "nombre": "Trigo"
+}
+
+### TiposSujeto - Obtener todos
+# @name GetTiposSujeto
+GET {{url}}/api/tipossujeto
+
+### TiposSujeto - Obtener por ID
+# @name GetTipoSujeto
+GET {{url}}/api/tipossujeto/1
+
+### TiposSujeto - Crear
+# @name CreateTipoSujeto
+POST {{url}}/api/tipossujeto
+Content-Type: application/json
+
+{
+    "id": 1,
+    "nombre": "Chofer"
+}
+
+### TiposSujeto - Actualizar
+# @name UpdateTipoSujeto
+PUT {{url}}/api/tipossujeto/1
+Content-Type: application/json
+
+{
+    "nombre": "Chofer"
+}
+
+### TiposSujeto - Eliminar
+# @name DeleteTipoSujeto
+DELETE {{url}}/api/tipossujeto/0
+
+### Cereales - Eliminar
+# @name DeleteCereal
+DELETE {{url}}/api/cereales/25
+
+### Estados - Obtener todos
+# @name GetEstados
+GET {{url}}/api/estados
+
+### Estados - Obtener por ID
+# @name GetEstado
+GET {{url}}/api/estados/1
+
+### Estados - Crear
+# @name CreateEstado
+POST {{url}}/api/estados
+Content-Type: application/json
+
+{
+    "id": 1,
+    "nombre": "En Cola",
+    "logo": ""
+}
+
+### Estados - Actualizar
+# @name UpdateEstado
+PUT {{url}}/api/estados/1
+Content-Type: application/json
+
+{
+    "nombre": "En Cola",
+    "logo": ""
+}
+
+### Estados - Eliminar
+# @name DeleteEstado
+DELETE {{url}}/api/estados/1
+
+### Filas - Obtener todas
+# @name GetFilas
+GET {{url}}/api/filas
+### Filas - Obtener stock
+# @name GetFilasStock
+GET {{url}}/api/filas/stock
+
+
+### Filas - Obtener por ID
+# @name GetFila
+GET {{url}}/api/filas/1
+
+### Filas - Crear
+# @name CreateFila
+POST {{url}}/api/filas
+Content-Type: application/json
+
+{
+    "nombre": "Fila 3 - Carga/Descarga",
+    "capacidad": 10,
+    "tipoOperacion": 0,
+    "zonaId": 2
+}
+
+### Filas - Actualizar
+# @name UpdateFila
+PUT {{url}}/api/filas/3
+Content-Type: application/json
+
+{
+    "nombre": "Fila 3 ",
+    "capacidad": 10,
+    "tipoOperacion": 0,
+    "zonaId": 1
+}
+
+### Filas - Eliminar
+# @name DeleteFila
+DELETE {{url}}/api/filas/1
+
+### Filas - Agregar Cereal
+# @name AddCerealToFila
+POST {{url}}/api/filas/1/cereales
+Content-Type: application/json
+
+{
+    "cerealId": 15
+}
+
+### Filas - Quitar Cereal
+# @name RemoveCerealFromFila
+DELETE {{url}}/api/filas/1/cereales/23
+
+### Obtener todas las transiciones de estado
+GET {{url}}/api/transicionesestado
+Accept: application/json
+
+### Obtener una transición específica por ID
+GET {{url}}/api/transicionesestado/1
+Accept: application/json
+
+### Obtener una transición específica por ID
+GET {{url}}/api/transicionesestado/disponibles?circuitoId=1&estadoOrigenId=1
+Accept: application/json
+
+### Crear una nueva transición de estado
+# Nota: Asegúrate de que los IDs de Circuito y Estados existan en tu base de datos
+POST {{url}}/api/transicionesestado
+Content-Type: application/json
+
+{
+  "circuitoId": 1,
+  "estadoOrigenId": 1,
+  "estadoDestinoId": 2
+}
+
+### Actualizar una transición existente
+PUT {{url}}/api/transicionesestado/1
+Content-Type: application/json
+
+{
+  "circuitoId": 1,
+  "estadoOrigenId": 1,
+  "estadoDestinoId": 3
+}
+
+### Eliminar una transición
+DELETE {{url}}/api/transicionesestado/39
+
+### Ejemplo de error al crear (Circuito no existe)
+POST {{url}}/api/transicionesestado
+Content-Type: application/json
+
+{
+  "circuitoId": 999,
+  "estadoOrigenId": 1,
+  "estadoDestinoId": 2
+}
+
+### Sujetos - Obtener todos
+# @name GetSujetos
+GET {{url}}/api/sujetos
+
+### Sujetos - Obtener por ID
+# @name GetSujeto
+GET {{url}}/api/sujetos/2
+
+### Sujetos - Crear
+# @name CreateSujeto
+POST {{url}}/api/sujetos
+Content-Type: application/json
+
+{
+    "Nombre": "Juan Perez",
+    "NumeroDocumento": 23165155459,
+    "Email": "juan@example.com",
+    "Telefono": "123-456-7890",
+    "ExternoId": ""
+}
+
+### Sujetos - Actualizar
+# @name UpdateSujeto
+PUT {{url}}/api/sujetos/1
+Content-Type: application/json
+
+{
+    "Nombre": "Juan Pérez Actualizado",
+    "NumeroDocumento": 23165155459,
+    "Email": "juan.updated@example.com",
+    "Telefono": "123-456-7890",
+    "ExternoId": "EXT001"
+}
+
+### Sujetos - Eliminar
+# @name DeleteSujeto
+DELETE {{url}}/api/sujetos/1
+
+### Sujetos - Agregar TipoSujeto
+# @name AddTipoSujetoToSujeto
+POST {{url}}/api/sujetos/2/TipoSujeto
+Content-Type: application/json
+
+2
+
+### Sujetos - Quitar TipoSujeto
+# @name RemoveTipoSujetoFromSujeto
+DELETE {{url}}/api/sujetos/1/TipoSujeto
+Content-Type: application/json
+
+2
+
+### Sujetos - Agregar Patente
+# @name AddPatenteToSujeto
+POST {{url}}/api/sujetos/2/Patente
+Content-Type: application/json
+
+{
+    "PatenteCamion": "ABC123",
+    "PatenteAcoplado": "XYZ789",
+    "PatenteOpcional": "OPQ456"
+}
+### Sujetos - Modificar Patente
+# @name UpdatePatenteInSujeto
+PUT {{url}}/api/sujetos/1/Patente/2
+Content-Type: application/json
+
+{
+    "PatenteCamion": "ZZZ999",
+    "PatenteAcoplado": "mod2",
+    "PatenteOpcional": ""
+}
+
+### Sujetos - Quitar TipoSujeto
+# @name RemovePatenteFromSujeto
+DELETE {{url}}/api/sujetos/1/Patente
+Content-Type: application/json
+
+3
+
+### Sujetos - Agregar Chofer
+# @name AddChoferToSujeto
+POST {{url}}/api/sujetos/1/Chofer
+Content-Type: application/json
+
+2
+
+### Sujetos - Quitar TipoSujeto
+# @name RemoveChoferFromSujeto
+DELETE {{url}}/api/sujetos/1/Chofer
+Content-Type: application/json
+
+1
+
+### Orden Transito - Obtener todos
+# @name GetOrdenesTransito
+GET {{url}}/api/ordenestransito
+
+### Orden Transito - Obtener todos
+# @name GetOrdenesTransito
+GET {{url}}/api/ordenestransito/4
+
+### Orden Transito - Crear
+# @name CreateOrdenTransito
+POST {{url}}/api/ordenestransito
+Content-Type: application/json
+
+{
+"fecha": "2024-05-20T14:30:00Z",
+"cerealId": 23,
+"circuitoId": 2,
+"transporteId": 1,
+"choferId": 2,
+"patenteChasis": "AA123BB",
+"patenteAcoplado": "CC456DD",
+"patenteOpc": "",
+"numeroComprobante": "0001-00004567",
+"tagRFID": "E2801130200052B3",
+"sectorId": 1,
+"estadoId": 1,
+"filaId": 1,
+"observacion": "Ingreso de mercadería estándar"
+}
+
+### Orden Transito - Estados Disponibles
+# @name GetEstadosDisponiblesOrdenTransito
+GET {{url}}/api/ordenestransito/4/estadosDisponibles
+### Orden Transito - Cambiar Estado
+# @name CambiarEstadoOrdenTransito
+POST {{url}}/api/ordenestransito/4/cambiarestado
+Content-Type: application/json
+
+{
+"estadoId": 8,
+"observacion": ""
+}
+### Orden Transito - Cambiar Fila
+# @name CambiarFilaOrdenTransito
+POST {{url}}/api/ordenestransito/4/cambiarfila
+Content-Type: application/json
+
+{
+"filaId": "4",
+"observacion": "Se cambia a fila carga/descarga"
+}
+
+
+### Orden Transito - Quitar Orden Transito
+# @name RemoveOrdenTransito
+DELETE {{url}}/api/ordenestransito/3
+Content-Type: application/json
+
+1
