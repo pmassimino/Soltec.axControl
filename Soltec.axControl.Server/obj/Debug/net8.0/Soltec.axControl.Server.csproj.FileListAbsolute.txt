@@ -137,3 +137,5 @@ C:\Proyectos\Soltec.axControl.Server\Soltec.axControl.Server\bin\Debug\net8.0\ru
 C:\Proyectos\Soltec.axControl.Server\Soltec.axControl.Server\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Proyectos\Soltec.axControl.Server\Soltec.axControl.Server\bin\Debug\net8.0\BCrypt-Net-Next.dll
 C:\Proyectos\Soltec.axControl.Server\Soltec.axControl.Server\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Proyectos\Soltec.axControl.Server\Soltec.axControl.Server\obj\Debug\net8.0\Soltec.axControl.Server.sourcelink.json
+C:\Proyectos\Soltec.axControl.Server\Soltec.axControl.Server\bin\Debug\net8.0\AfipWebService.dll

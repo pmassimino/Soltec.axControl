@@ -5,10 +5,9 @@ using Soltec.axControl.Server.Data;
 using Soltec.axControl.Server.Model;
 
 namespace Soltec.axControl.Server.Controllers;
-
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
 public class ZonasController : ControllerBase
 {
     private readonly ApplicationDbContext _context;

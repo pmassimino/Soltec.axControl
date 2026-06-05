@@ -49,6 +49,18 @@ namespace Soltec.axControl.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Roles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Sectores",
                 columns: table => new
                 {
@@ -223,46 +235,6 @@ namespace Soltec.axControl.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Roles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Roles", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Roles_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Usuarios",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Filas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    Capacidad = table.Column<int>(type: "int", nullable: false),
-                    TipoOperacion = table.Column<int>(type: "int", nullable: false),
-                    ZonaId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Filas", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Filas_Zonas_ZonaId",
-                        column: x => x.ZonaId,
-                        principalTable: "Zonas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UsuariosRoles",
                 columns: table => new
                 {
@@ -284,6 +256,28 @@ namespace Soltec.axControl.Server.Migrations
                         name: "FK_UsuariosRoles_Usuarios_UsuarioId",
                         column: x => x.UsuarioId,
                         principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Filas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Capacidad = table.Column<int>(type: "int", nullable: false),
+                    TipoOperacion = table.Column<int>(type: "int", nullable: false),
+                    ZonaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Filas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Filas_Zonas_ZonaId",
+                        column: x => x.ZonaId,
+                        principalTable: "Zonas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -560,11 +554,6 @@ namespace Soltec.axControl.Server.Migrations
                 column: "SujetoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Roles_UsuarioId",
-                table: "Roles",
-                column: "UsuarioId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_SujetoTiposSujeto_TiposSujetoId",
                 table: "SujetoTiposSujeto",
                 column: "TiposSujetoId");
@@ -636,6 +625,9 @@ namespace Soltec.axControl.Server.Migrations
                 name: "Roles");
 
             migrationBuilder.DropTable(
+                name: "Usuarios");
+
+            migrationBuilder.DropTable(
                 name: "Cereales");
 
             migrationBuilder.DropTable(
@@ -649,9 +641,6 @@ namespace Soltec.axControl.Server.Migrations
 
             migrationBuilder.DropTable(
                 name: "Sectores");
-
-            migrationBuilder.DropTable(
-                name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Zonas");

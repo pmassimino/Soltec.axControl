@@ -341,12 +341,7 @@ namespace Soltec.axControl.Server.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Roles");
                 });
@@ -705,13 +700,6 @@ namespace Soltec.axControl.Server.Migrations
                     b.Navigation("Sujeto");
                 });
 
-            modelBuilder.Entity("Soltec.axControl.Server.Model.Rol", b =>
-                {
-                    b.HasOne("Soltec.axControl.Server.Model.Usuario", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("UsuarioId");
-                });
-
             modelBuilder.Entity("Soltec.axControl.Server.Model.SectorHistorial", b =>
                 {
                     b.HasOne("Soltec.axControl.Server.Model.OrdenTransito", "OrdenTransito")
@@ -767,7 +755,7 @@ namespace Soltec.axControl.Server.Migrations
                         .IsRequired();
 
                     b.HasOne("Soltec.axControl.Server.Model.Usuario", "Usuario")
-                        .WithMany("UsuarioRoles")
+                        .WithMany("Roles")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -823,8 +811,6 @@ namespace Soltec.axControl.Server.Migrations
             modelBuilder.Entity("Soltec.axControl.Server.Model.Usuario", b =>
                 {
                     b.Navigation("Roles");
-
-                    b.Navigation("UsuarioRoles");
                 });
 
             modelBuilder.Entity("Soltec.axControl.Server.Model.Zona", b =>

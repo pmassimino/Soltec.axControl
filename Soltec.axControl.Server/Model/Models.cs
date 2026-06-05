@@ -16,8 +16,8 @@ public class Usuario
     public string PasswordHash { get; set; } // Aquí guardas TODO (Algoritmo + Salt + Hash)    
 
     public string Email { get; set; }    
-    public ICollection<Rol> Roles { get; set; }
-    public ICollection<UsuarioRol> UsuarioRoles { get; set; }   
+    
+    public ICollection<UsuarioRol> Roles { get; set; }   
 
 }
 public class Rol

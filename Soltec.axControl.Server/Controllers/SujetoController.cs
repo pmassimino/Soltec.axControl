@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Soltec.axControl.Server.Data;
 using Soltec.axControl.Server.Model;
 using Soltec.axControl.Server.Code;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Soltec.axControl.Server.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class SujetosController : ControllerBase

@@ -42,7 +42,7 @@ public class ApplicationDbContext : DbContext
         // 2. Configurar relación Usuario -> UsuarioRol
         modelBuilder.Entity<UsuarioRol>()
             .HasOne(ur => ur.Usuario)
-            .WithMany(u => u.UsuarioRoles)
+            .WithMany(u => u.Roles)
             .HasForeignKey(ur => ur.UsuarioId);
 
         // 3. Configurar relación Rol -> UsuarioRol

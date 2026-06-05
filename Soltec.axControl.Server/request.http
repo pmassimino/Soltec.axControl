@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:5000
+@baseUrl = https://localhost:5001
 
 ### Crear una nueva transición de estado
 # Nota: Asegúrate de que los IDs de Circuito y Estados existan en tu base de datos

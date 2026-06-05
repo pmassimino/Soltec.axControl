@@ -1,4 +1,4 @@
-@url=http://localhost:5110
+@url=https://localhost:5001
 @ApiKey = pgH7QzFHJx4w46fI~5Uzi4RvtTwlEXp
 
 ### Estados - Login
@@ -13,6 +13,13 @@ Content-Type: application/json
 
 ### Guardar el token en una variable
 @authToken = {{Login.response.body.token}}
+
+### Zonas - Obtener todas
+# @name TestAuth
+GET {{url}}/api/Login/test
+Authorization: Bearer {{authToken}} 
+
+
 
 ###Habilita TAbs
 # @name HabilitarTag
@@ -42,7 +49,7 @@ GET {{url}}/api/usuario
 # @name GetZonas
 GET {{url}}/api/zonas
 Content-Type: application/json
-Authorization:Bearer {{authToken}}
+Authorization: Bearer {{authToken}}
 
 ### Zonas - Obtener por ID
 # @name GetZona
@@ -52,6 +59,7 @@ GET {{url}}/api/zonas/1
 # @name CreateZona
 POST {{url}}/api/zonas
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
     "nombre": "Ingreso",
@@ -63,7 +71,7 @@ Content-Type: application/json
 # @name UpdateZona
 PUT {{url}}/api/zonas/1
 Content-Type: application/json
-
+Authorization: Bearer {{authToken}}
 {
     "nombre": "Entrada Principal",
     "descripcion": "Zona de entrada principal de vehículos",
@@ -73,19 +81,24 @@ Content-Type: application/json
 ### Zonas - Eliminar
 # @name DeleteZona
 DELETE {{url}}/api/zonas/0
+Authorization: Bearer {{authToken}}
 
 ### Cereales - Obtener todos
 # @name GetCereales
 GET {{url}}/api/cereales
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 ### Cereales - Obtener por ID
 # @name GetCereal
 GET {{url}}/api/cereales/15
+Authorization: Bearer {{authToken}}
 
 ### Cereales - Crear
 # @name CreateCereal
 POST {{url}}/api/cereales
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
     "id": 15,
@@ -95,6 +108,7 @@ Content-Type: application/json
 # @name UpdateCereal
 PUT {{url}}/api/cereales/15
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
     "nombre": "Trigo"
@@ -103,15 +117,18 @@ Content-Type: application/json
 ### TiposSujeto - Obtener todos
 # @name GetTiposSujeto
 GET {{url}}/api/tipossujeto
+Authorization: Bearer {{authToken}}
 
 ### TiposSujeto - Obtener por ID
 # @name GetTipoSujeto
 GET {{url}}/api/tipossujeto/1
-
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
 ### TiposSujeto - Crear
 # @name CreateTipoSujeto
 POST {{url}}/api/tipossujeto
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
     "id": 1,
@@ -122,7 +139,7 @@ Content-Type: application/json
 # @name UpdateTipoSujeto
 PUT {{url}}/api/tipossujeto/1
 Content-Type: application/json
-
+Authorization: Bearer {{authToken}}
 {
     "nombre": "Chofer"
 }
@@ -130,23 +147,28 @@ Content-Type: application/json
 ### TiposSujeto - Eliminar
 # @name DeleteTipoSujeto
 DELETE {{url}}/api/tipossujeto/0
+Authorization: Bearer {{authToken}}
 
 ### Cereales - Eliminar
 # @name DeleteCereal
 DELETE {{url}}/api/cereales/25
+Authorization: Bearer {{authToken}}
 
 ### Estados - Obtener todos
 # @name GetEstados
 GET {{url}}/api/estados
+Authorization: Bearer {{authToken}}
 
 ### Estados - Obtener por ID
 # @name GetEstado
 GET {{url}}/api/estados/1
+Authorization: Bearer {{authToken}}
 
 ### Estados - Crear
 # @name CreateEstado
 POST {{url}}/api/estados
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
     "id": 1,
@@ -171,22 +193,27 @@ DELETE {{url}}/api/estados/1
 ### Filas - Obtener todas
 # @name GetFilas
 GET {{url}}/api/filas
+Authorization: Bearer {{authToken}}
 ### Filas - Obtener stock
 # @name GetFilasStock
 GET {{url}}/api/filas/stock
+Authorization: Bearer {{authToken}}
+
 
 
 ### Filas - Obtener por ID
 # @name GetFila
 GET {{url}}/api/filas/1
+Authorization: Bearer {{authToken}}
 
 ### Filas - Crear
 # @name CreateFila
 POST {{url}}/api/filas
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-    "nombre": "Fila 3 - Carga/Descarga",
+    "nombre": "Fila 1 - Carga/Descarga",
     "capacidad": 10,
     "tipoOperacion": 0,
     "zonaId": 2
@@ -194,11 +221,12 @@ Content-Type: application/json
 
 ### Filas - Actualizar
 # @name UpdateFila
-PUT {{url}}/api/filas/3
+PUT {{url}}/api/filas/1
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-    "nombre": "Fila 3 ",
+    "nombre": "Fila 1 - Ingreso",
     "capacidad": 10,
     "tipoOperacion": 0,
     "zonaId": 1
@@ -211,6 +239,7 @@ DELETE {{url}}/api/filas/1
 ### Filas - Agregar Cereal
 # @name AddCerealToFila
 POST {{url}}/api/filas/1/cereales
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
@@ -220,22 +249,27 @@ Content-Type: application/json
 ### Filas - Quitar Cereal
 # @name RemoveCerealFromFila
 DELETE {{url}}/api/filas/1/cereales/23
+Authorization: Bearer {{authToken}}
 
 ### Obtener todas las transiciones de estado
 GET {{url}}/api/transicionesestado
+Authorization: Bearer {{authToken}}
 Accept: application/json
 
 ### Obtener una transición específica por ID
 GET {{url}}/api/transicionesestado/1
+Authorization: Bearer {{authToken}}
 Accept: application/json
 
 ### Obtener una transición específica por ID
 GET {{url}}/api/transicionesestado/disponibles?circuitoId=1&estadoOrigenId=1
+Authorization: Bearer {{authToken}}
 Accept: application/json
 
 ### Crear una nueva transición de estado
 # Nota: Asegúrate de que los IDs de Circuito y Estados existan en tu base de datos
 POST {{url}}/api/transicionesestado
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
@@ -246,6 +280,7 @@ Content-Type: application/json
 
 ### Actualizar una transición existente
 PUT {{url}}/api/transicionesestado/1
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
@@ -256,9 +291,11 @@ Content-Type: application/json
 
 ### Eliminar una transición
 DELETE {{url}}/api/transicionesestado/39
+Authorization: Bearer {{authToken}}
 
 ### Ejemplo de error al crear (Circuito no existe)
 POST {{url}}/api/transicionesestado
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
@@ -270,19 +307,23 @@ Content-Type: application/json
 ### Sujetos - Obtener todos
 # @name GetSujetos
 GET {{url}}/api/sujetos
+Authorization: Bearer {{authToken}}
 
 ### Sujetos - Obtener por ID
 # @name GetSujeto
 GET {{url}}/api/sujetos/2
+Authorization: Bearer {{authToken}}
+
 
 ### Sujetos - Crear
 # @name CreateSujeto
 POST {{url}}/api/sujetos
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-    "Nombre": "Juan Perez",
-    "NumeroDocumento": 23165155459,
+    "Nombre": "Alberto Gómez ",
+    "NumeroDocumento": 23255953044,
     "Email": "juan@example.com",
     "Telefono": "123-456-7890",
     "ExternoId": ""
@@ -291,6 +332,7 @@ Content-Type: application/json
 ### Sujetos - Actualizar
 # @name UpdateSujeto
 PUT {{url}}/api/sujetos/1
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
@@ -304,17 +346,20 @@ Content-Type: application/json
 ### Sujetos - Eliminar
 # @name DeleteSujeto
 DELETE {{url}}/api/sujetos/1
+Authorization: Bearer {{authToken}}
 
 ### Sujetos - Agregar TipoSujeto
 # @name AddTipoSujetoToSujeto
-POST {{url}}/api/sujetos/2/TipoSujeto
+POST {{url}}/api/sujetos/1/TipoSujeto
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
-2
+1
 
 ### Sujetos - Quitar TipoSujeto
 # @name RemoveTipoSujetoFromSujeto
 DELETE {{url}}/api/sujetos/1/TipoSujeto
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 2
@@ -322,6 +367,7 @@ Content-Type: application/json
 ### Sujetos - Agregar Patente
 # @name AddPatenteToSujeto
 POST {{url}}/api/sujetos/2/Patente
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
@@ -343,6 +389,7 @@ Content-Type: application/json
 ### Sujetos - Quitar TipoSujeto
 # @name RemovePatenteFromSujeto
 DELETE {{url}}/api/sujetos/1/Patente
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 3
@@ -350,6 +397,7 @@ Content-Type: application/json
 ### Sujetos - Agregar Chofer
 # @name AddChoferToSujeto
 POST {{url}}/api/sujetos/1/Chofer
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 2
@@ -357,6 +405,7 @@ Content-Type: application/json
 ### Sujetos - Quitar TipoSujeto
 # @name RemoveChoferFromSujeto
 DELETE {{url}}/api/sujetos/1/Chofer
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 1
@@ -364,14 +413,18 @@ Content-Type: application/json
 ### Orden Transito - Obtener todos
 # @name GetOrdenesTransito
 GET {{url}}/api/ordenestransito
+Authorization: Bearer {{authToken}}
 
 ### Orden Transito - Obtener todos
 # @name GetOrdenesTransito
-GET {{url}}/api/ordenestransito/4
+GET {{url}}/api/ordenestransito/1
+Authorization: Bearer {{authToken}}
+
 
 ### Orden Transito - Crear
 # @name CreateOrdenTransito
 POST {{url}}/api/ordenestransito
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
@@ -393,30 +446,34 @@ Content-Type: application/json
 
 ### Orden Transito - Estados Disponibles
 # @name GetEstadosDisponiblesOrdenTransito
-GET {{url}}/api/ordenestransito/4/estadosDisponibles
+GET {{url}}/api/ordenestransito/1/estadosDisponibles
+Authorization: Bearer {{authToken}}
 ### Orden Transito - Cambiar Estado
 # @name CambiarEstadoOrdenTransito
-POST {{url}}/api/ordenestransito/4/cambiarestado
+POST {{url}}/api/ordenestransito/1/cambiarestado
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-"estadoId": 8,
+"estadoId": 3,
 "observacion": ""
 }
 ### Orden Transito - Cambiar Fila
 # @name CambiarFilaOrdenTransito
-POST {{url}}/api/ordenestransito/4/cambiarfila
+POST {{url}}/api/ordenestransito/1/cambiarfila
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-"filaId": "4",
+"filaId": "3",
 "observacion": "Se cambia a fila carga/descarga"
 }
 
 
 ### Orden Transito - Quitar Orden Transito
 # @name RemoveOrdenTransito
-DELETE {{url}}/api/ordenestransito/3
+DELETE {{url}}/api/ordenestransito/1
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 1
